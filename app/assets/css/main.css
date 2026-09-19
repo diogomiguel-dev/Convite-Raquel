@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Abramo Script';
+  src: url('/fonts/Abramo Script.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '29LT Zarid Display';
+  src: url('/fonts/29LT-Zarid-Display-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-abramo-script: 'Abramo Script', cursive;
+  --font-zarid: '29LT Zarid Display', sans-serif;
+}
