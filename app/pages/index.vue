@@ -1,4 +1,50 @@
 <script setup lang="ts">
+const imagens = [
+  '/img/background.png',
+  '/img/toalha_mesa.png',
+  '/img/toalha_mesa2.png',
+  '/img/moldura_3.png',
+  '/img/manequim.jpeg',
+  '/img/manequim2.png',
+  '/img/telheiro.png',
+  '/img/envelope.png',
+]
+
+const carregadas = ref(0)
+const pronto = ref(false)
+const progresso = computed(() => Math.round((carregadas.value / imagens.length) * 100))
+
+// Bloqueia o scroll enquanto carrega
+useHead({
+  bodyAttrs: { class: computed(() => (pronto.value ? '' : 'overflow-hidden')) },
+})
+
+onMounted(async () => {
+  await Promise.all(
+    imagens.map(
+      src =>
+        new Promise<void>((resolve) => {
+          const img = new Image()
+          const fim = () => {
+            carregadas.value++
+            resolve()
+          }
+          img.onload = fim
+          img.onerror = fim // se falhar, não bloqueia o site
+          img.src = src
+        }),
+    ),
+  )
+
+  // Fontes
+  await Promise.all([
+    document.fonts.load("1em 'Abramo Script'"),
+    document.fonts.load("1em '29LT Zarid Display'"),
+  ]).catch(() => { })
+
+  setTimeout(() => (pronto.value = true), 300)
+})
+
 const evento = new Date('2026-11-15T19:00:00')
 
 const dias = ref(0)
