@@ -67,7 +67,18 @@ onBeforeUnmount(() => clearInterval(timer))
 </script>
 
 <template>
-  <section class="relative h-dvh w-full overflow-hidden [--s:min(calc(100vw/390),calc(100dvh/844))]">
+  <!-- ========== LOADING ========== -->
+  <Transition leave-active-class="transition-opacity duration-500" leave-to-class="opacity-0">
+    <div v-if="!pronto" class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-3 bg-[#f6f3e9]">
+      <div class="h-[3px] w-40 overflow-hidden rounded-full bg-taupe-800/15">
+        <div class="h-full bg-taupe-800 transition-[width] duration-300" :style="{ width: progresso + '%' }" />
+      </div>
+      <span class="text-xs tracking-widest text-taupe-800">{{ progresso }}%</span>
+    </div>
+  </Transition>
+
+  <!-- ========== SECTION 1 ========== -->
+  <section class="relative h-svh w-full overflow-hidden [--s:min(calc(100vw/390),calc(100svh/844))]">
     <img src="/img/background.png" alt="Background" class="absolute inset-0 h-full w-full object-cover">
 
     <div class="absolute left-1/2 top-1/2 z-10 h-[70vh] w-[97vw] -translate-x-1/2 -translate-y-1/2">
@@ -98,14 +109,22 @@ onBeforeUnmount(() => clearInterval(timer))
         </span>
       </div>
     </div>
+
+    <a href="#convite" aria-label="Seguinte"
+      class="absolute bottom-[3%] left-1/2 z-30 -translate-x-1/2 text-white">
+      <svg class="h-[calc(var(--s)*20)] w-[calc(var(--s)*20)]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </a>
   </section>
 
   <!-- ========== SECTION 2: CONVITE ========== -->
   <section id="convite"
-    class="relative h-dvh w-full overflow-hidden bg-[#f6f3e9] [--s:min(calc(100vw/390),calc(100dvh/844))]">
+    class="relative h-svh w-full overflow-hidden bg-[#f6f3e9] [--s:min(calc(100vw/390),calc(100svh/844))]">
     <div class="absolute inset-x-0 top-0 h-[15%] overflow-hidden">
       <img src="/img/background.png" alt="Background"
-        class="h-dvh w-full max-w-none rotate-180 -scale-x-100 object-cover">
+        class="h-svh w-full max-w-none rotate-180 -scale-x-100 object-cover">
     </div>
     <img src="/img/telheiro.png" alt="Telheiro" class="absolute inset-x-0 top-[15%] h-[29%] w-full object-cover">
 
@@ -173,21 +192,21 @@ onBeforeUnmount(() => clearInterval(timer))
   </section>
 
   <!-- ========== SECTION 3: MENU + CONTAGEM ========== -->
-  <section id="menu" class="relative h-dvh w-full overflow-hidden [--s:min(calc(100vw/390),calc(100dvh/844))]">
+  <section id="menu" class="relative h-svh w-full overflow-hidden [--s:min(calc(100vw/390),calc(100svh/844))]">
     <img src="/img/background.png" alt="Background" class="absolute inset-x-0 top-0 h-[46%] w-full object-cover">
     <img src="/img/manequim2.png" alt="Manequim" class="absolute inset-x-0 bottom-0 h-[54%] w-full object-cover">
     <div class="absolute inset-x-0 bottom-0 h-[54%] bg-black/10"></div>
 
     <!-- Toalha com menu -->
-    <div class="@container absolute left-1/2 top-[23%] z-10 w-[50%] -translate-x-1/2 -translate-y-1/2">
+    <div class="@container absolute left-1/2 top-[23%] z-10 w-[57%] -translate-x-1/2 -translate-y-1/2">
       <img src="/img/toalha_mesa.png" alt="Toalha Mesa" class="block w-full">
 
       <div
-        class="font-zarid absolute left-1/2 top-[18%] w-[74%] -translate-x-1/2 text-center text-[length:2.7cqw] uppercase leading-[1.35] text-taupe-500">
+        class="font-zarid absolute left-1/2 top-[18%] w-[74%] -translate-x-1/2 text-center text-[length:3cqw] uppercase leading-[1.35] text-taupe-500">
         <p class="mb-[3cqw]">35 €</p>
 
         <p class="italic">Couvert:</p>
-        <p class="mb-[3cqw]">Pão azeitonas manteiga aromatizada</p>
+        <p class="mb-[2cqw]">Pão azeitonas manteiga aromatizada</p>
 
         <p class="italic">Entradas:</p>
         <p>Bolo do caco</p>
@@ -195,11 +214,11 @@ onBeforeUnmount(() => clearInterval(timer))
         <p>Salada grega</p>
         <p>Camarão folhado</p>
         <p>Paté de atum</p>
-        <p class="mb-[5cqw]">Salgadinhos</p>
+        <p class="mb-[3cqw]">Salgadinhos</p>
 
-        <p class="mb-[3cqw] italic">2 pratos principais</p>
+        <p class="mb-[2cqw] italic">2 pratos principais</p>
 
-        <p class="mb-[5cqw] italic">Sobremesas</p>
+        <p class="mb-[3cqw] italic">Sobremesas</p>
 
         <p class="italic">Bebidas:</p>
         <p>Vinhos da casa</p>
