@@ -10,37 +10,52 @@ const imagens = [
   '/img/envelope.png',
 ]
 
-const carregadas = ref(0)
+// Fração (0 a 1) descarregada de cada imagem
+const fracoes = ref<number[]>(imagens.map(() => 0))
 const pronto = ref(false)
-const progresso = computed(() => Math.round((carregadas.value / imagens.length) * 100))
+const progresso = computed(() =>
+  Math.round((fracoes.value.reduce((a, b) => a + b, 0) / imagens.length) * 100),
+)
 
 // Bloqueia o scroll enquanto carrega
 useHead({
   bodyAttrs: { class: computed(() => (pronto.value ? '' : 'overflow-hidden')) },
 })
 
-onMounted(async () => {
-  await Promise.all(
-    imagens.map(
-      src =>
-        new Promise<void>((resolve) => {
-          const img = new Image()
-          const fim = () => {
-            carregadas.value++
-            resolve()
-          }
-          img.onload = fim
-          img.onerror = fim // se falhar, não bloqueia o site
-          img.src = src
-        }),
-    ),
-  )
+async function carregar(src: string, i: number) {
+  try {
+    const res = await fetch(src)
+    const total = Number(res.headers.get('content-length')) || 0
 
-  // Fontes
-  await Promise.all([
-    document.fonts.load("1em 'Abramo Script'"),
-    document.fonts.load("1em '29LT Zarid Display'"),
-  ]).catch(() => { })
+    if (!res.body || !total) {
+      await res.blob()
+    } else {
+      const reader = res.body.getReader()
+      let recebido = 0
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        recebido += value.length
+        fracoes.value[i] = Math.min(recebido / total, 1)
+      }
+    }
+  } catch {
+    // se falhar, não bloqueia o site
+  }
+  fracoes.value[i] = 1
+}
+
+onMounted(async () => {
+  const limite = new Promise(resolve => setTimeout(resolve, 15_000))
+
+  await Promise.race([
+    Promise.all([
+      ...imagens.map(carregar),
+      document.fonts.load("1em 'Abramo Script'").catch(() => { }),
+      document.fonts.load("1em '29LT Zarid Display'").catch(() => { }),
+    ]),
+    limite,
+  ])
 
   setTimeout(() => (pronto.value = true), 300)
 })
