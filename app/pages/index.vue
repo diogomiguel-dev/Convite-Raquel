@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const imagens = [
-  '/img/background.png',
-  '/img/toalha_mesa.png',
-  '/img/toalha_mesa2.png',
-  '/img/moldura_3.png',
-  '/img/manequim.jpeg',
-  '/img/manequim2.png',
-  '/img/telheiro.png',
-  '/img/envelope.png',
+  '/img/background.webp',
+  '/img/toalha_mesa.webp',
+  '/img/toalha_mesa2.webp',
+  '/img/moldura_3.webp',
+  '/img/manequim.webp',
+  '/img/manequim2.webp',
+  '/img/telheiro.webp',
+  '/img/envelope.webp',
 ]
 
 // Fração (0 a 1) descarregada de cada imagem
@@ -94,13 +94,13 @@ onBeforeUnmount(() => clearInterval(timer))
 
   <!-- ========== SECTION 1 ========== -->
   <section class="relative h-svh w-full overflow-hidden [--s:min(calc(100vw/390),calc(100svh/844))]">
-    <img src="/img/background.png" alt="Background" class="absolute inset-0 h-full w-full object-cover">
+    <img src="/img/background.webp" alt="Background" class="absolute inset-0 h-full w-full object-cover">
 
     <div class="absolute left-1/2 top-1/2 z-10 h-[70vh] w-[97vw] -translate-x-1/2 -translate-y-1/2">
-      <img src="/img/toalha_mesa.png" alt="Toalha Mesa" class="h-full w-full scale-110 object-contain">
+      <img src="/img/toalha_mesa.webp" alt="Toalha Mesa" class="h-full w-full scale-110 object-contain">
 
       <div class="absolute left-1/2 top-[calc(var(--s)*90)] z-20 w-[15%] -translate-x-1/2">
-        <img src="/img/moldura_3.png" alt="Moldura" class="block w-full opacity-30">
+        <img src="/img/moldura_3.webp" alt="Moldura" class="block w-full opacity-30">
 
         <p
           class="font-abramo-script absolute left-1/2 top-[calc(var(--s)*120)] z-20 ml-[calc(var(--s)*20)] w-[calc(var(--s)*240)] -translate-x-1/2 rotate-340 text-left text-[length:calc(var(--s)*100)] leading-[calc(var(--s)*36)] text-taupe-600">
@@ -109,7 +109,7 @@ onBeforeUnmount(() => clearInterval(timer))
 
         <div
           class="absolute left-1/2 top-[calc(var(--s)*172)] z-10 h-[calc(var(--s)*121)] w-[calc(var(--s)*82)] -translate-x-1/2 bg-orange-100">
-          <img src="/img/manequim.jpeg" alt="Manequim"
+          <img src="/img/manequim.webp" alt="Manequim"
             class="ml-[calc(var(--s)*5)] mt-[calc(var(--s)*5)] h-[calc(var(--s)*96)] w-[calc(var(--s)*72)] object-cover">
           <span
             class="font-zarid absolute -bottom-[calc(var(--s)*4)] right-[calc(var(--s)*8)] text-[length:calc(var(--s)*16)]">27</span>
@@ -138,14 +138,14 @@ onBeforeUnmount(() => clearInterval(timer))
   <section id="convite"
     class="relative h-svh w-full overflow-hidden bg-[#f6f3e9] [--s:min(calc(100vw/390),calc(100svh/844))]">
     <div class="absolute inset-x-0 top-0 h-[15%] overflow-hidden">
-      <img src="/img/background.png" alt="Background"
+      <img src="/img/background.webp" alt="Background"
         class="h-svh w-full max-w-none rotate-180 -scale-x-100 object-cover">
     </div>
-    <img src="/img/telheiro.png" alt="Telheiro" class="absolute inset-x-0 top-[15%] h-[29%] w-full object-cover">
+    <img src="/img/telheiro.webp" alt="Telheiro" class="absolute inset-x-0 top-[15%] h-[29%] w-full object-cover">
 
     <!-- Toalha com título e informações -->
     <div class="@container absolute left-1/2 top-[3%] z-10 w-[36%] -translate-x-1/2">
-      <img src="/img/toalha_mesa2.png" alt="Toalha Mesa" class="block w-full">
+      <img src="/img/toalha_mesa2.webp" alt="Toalha Mesa" class="block w-full">
 
       <p
         class="font-abramo-script absolute left-1/2 top-[28%] w-full -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-center text-[length:10cqw] text-taupe-500">
@@ -162,7 +162,7 @@ onBeforeUnmount(() => clearInterval(timer))
     </div>
 
     <!-- Envelope -->
-    <img src="/img/envelope.png" alt="Envelope"
+    <img src="/img/envelope.webp" alt="Envelope"
       class="absolute left-1/2 top-[44%] z-10 w-[40%] -translate-x-1/2 -translate-y-[63%]">
 
     <!-- Texto -->
@@ -208,13 +208,13 @@ onBeforeUnmount(() => clearInterval(timer))
 
   <!-- ========== SECTION 3: MENU + CONTAGEM ========== -->
   <section id="menu" class="relative h-svh w-full overflow-hidden [--s:min(calc(100vw/390),calc(100svh/844))]">
-    <img src="/img/background.png" alt="Background" class="absolute inset-x-0 top-0 h-[46%] w-full object-cover">
-    <img src="/img/manequim2.png" alt="Manequim" class="absolute inset-x-0 bottom-0 h-[54%] w-full object-cover">
+    <img src="/img/background.webp" alt="Background" class="absolute inset-x-0 top-0 h-[46%] w-full object-cover">
+    <img src="/img/manequim2.webp" alt="Manequim" class="absolute inset-x-0 bottom-0 h-[54%] w-full object-cover">
     <div class="absolute inset-x-0 bottom-0 h-[54%] bg-black/10"></div>
 
     <!-- Toalha com menu -->
     <div class="@container absolute left-1/2 top-[23%] z-10 w-[57%] -translate-x-1/2 -translate-y-1/2">
-      <img src="/img/toalha_mesa.png" alt="Toalha Mesa" class="block w-full">
+      <img src="/img/toalha_mesa.webp" alt="Toalha Mesa" class="block w-full">
 
       <div
         class="font-zarid absolute left-1/2 top-[18%] w-[74%] -translate-x-1/2 text-center text-[length:3cqw] uppercase leading-[1.35] text-taupe-500">
